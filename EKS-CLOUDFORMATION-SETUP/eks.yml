@@ -1,0 +1,32 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: K-POC-CLUSTER  # Add Cluster name
+  region: ap-southeast-1    # Region
+  version: "1.30"      # EKS Version
+
+vpc:
+  id: "vpc-07890c94f92bc489c"  # Update with your new VPC ID
+  cidr: "10.0.0.0/18"            # Update with the CIDR block of your new VPC
+  subnets:
+    private:
+      ap-southeast-1a:
+        id: "subnet-0c81f0797ad484026"  # Update with your private subnet ID for ap-southeast-1
+        cidr: "10.0.3.0/24"              # Update with the CIDR block of your private subnet in ap-southeast-1
+      ap-southeast-1b:
+        id: "subnet-09423c28bd3ad7663"  # Update with your private subnet ID for ap-southeast-1b
+        cidr: "10.0.4.0/24"              # Update with the CIDR block of your private subnet in ap-southeast-1b
+  securityGroup: "sg-0d400c26c2b733452"  # Update with your security group ID
+
+managedNodeGroups:
+  - name: K-POC-NODEGROUP  # Add Nodegroup Nmae
+    minSize: 1
+    maxSize: 2
+    desiredCapacity: 1
+    instanceType: t3a.medium
+    volumeSize: 20
+    privateNetworking: true
+    ssh:
+      allow: true
+      publicKeyName: k-poc-eks-ssh    # make sure u have this key stored in that region
