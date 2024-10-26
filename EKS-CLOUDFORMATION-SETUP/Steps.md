@@ -11,8 +11,7 @@ kubectl version
 ```bash
 # Example of a Bash command
 echo "Hello, world!"
-
-**hello**
+```
 
 # Switch to Project Directory
 cd /e/Projects/CLOUD_AWS/EKS-CLOUDFORMATION-SETUP
